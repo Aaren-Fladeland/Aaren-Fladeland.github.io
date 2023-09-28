@@ -1,53 +1,49 @@
 // Primative Paint
 // Aaren Fladeland
-// September 21, 2023
+// September 21st, 2023
 //
 // Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+// -the circle changes size and color randomly
 
-let extracanvas;
-let circleSize = 10;
+let extracanvas; //global variables
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  extracanvas = createGraphics(windowWidth, windowHeight);
+  extracanvas = createGraphics(windowWidth, windowHeight); //extra canvas
   extracanvas.clear();
 }
 
 
 function draw(){
   background(255);
-  textSize(40);
-  textFont('Times New Roman');
-  text("Aaren Fladeland",50,50);
-  ellipse(400,400, 25);
-  for(let i=0; i < 100; i=i+1){
-    extracanvas.ellipse(400,400, i);
-  }
-  if(key ==="a"){
-    rect(mouseX,mouseY, 50, 70);
-  }
-  if(key ==="s"){
-    ellipse(mouseX,mouseY, 50);
-  }
-  if(key ==="d"){
-    triangle(mouseX,mouseY, mouseX-20,mouseY-20, mouseX+20, mouseY-20);
-  }
-  image(extracanvas, 0,0);
-  if(key ==="r"){
-    fill("red");
+  autoArt(); 
+  extracanvas.textSize(40); 
+  extracanvas.textFont('Times New Roman'); //artist name
+  extracanvas.text("Aaren Fladeland",50,50);
+  if(key ==="r"){ //color changing
     extracanvas.fill("red");
   }
-  if(key ==="y"){
-    fill("yellow");
+  if(key==="y"){
     extracanvas.fill("yellow");
   }
   if(key ==="g"){
-    fill("green");
     extracanvas.fill("green");
   }
+  if(key ==="a"){ //extra challenge preview
+    fill(255);
+    rect(mouseX,mouseY, 50, 70);
+  }
+  if(key ==="s"){
+    fill(255);
+    ellipse(mouseX,mouseY, 50);
+  }
+  if(key ==="d"){
+    fill(255);
+    triangle(mouseX,mouseY, mouseX-20,mouseY-20, mouseX+20, mouseY-20);
+  }
+  image(extracanvas, 0,0);
 }
 function mousePressed(){
-  if(key ==="a"){
+  if(key ==="a"){ //extra challenge placing
     extracanvas.rect(mouseX,mouseY, 50, 70);
   }
   if(key ==="s"){
@@ -55,13 +51,17 @@ function mousePressed(){
   }
   if(key ==="d"){
     extracanvas.triangle(mouseX,mouseY, mouseX-20,mouseY-20, mouseX+20, mouseY-20);
-  } 
+  }
 }
 function keyPressed() {
-  if(keyCode === 32){
+  if(keyCode === 32){ //clean slate
     background(255);
     extracanvas.background(255);
     extracanvas.clear();
   }
 }
-
+function autoArt(){
+  let r = random(30,80);  //circle random size and color
+  fill(random(255),random(255),random(255));
+  ellipse(400,400, r);
+}
